@@ -1,0 +1,16 @@
+.git
+.github
+node_modules
+.next
+.vinext
+dist
+.wrangler
+app
+db
+drizzle
+examples
+package.json
+package-lock.json
+README.md
+tests
+*.log
