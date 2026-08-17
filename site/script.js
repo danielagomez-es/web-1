@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const siteShell = document.getElementById("site-shell");
   const enterSite = document.getElementById("enter-site");
   const currentYear = document.getElementById("current-year");
-  const mainContent = document.querySelector("main");
+  const contentSection = document.getElementById("inicio") || siteShell?.querySelector("main");
 
   currentYear.textContent = new Date().getFullYear();
 
@@ -11,10 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ageGate.hidden = true;
     siteShell.hidden = false;
 
-    if (mainContent) {
-      mainContent.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }
+    requestAnimationFrame(() => {
+      if (contentSection) {
+        contentSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
+    });
   });
 });
