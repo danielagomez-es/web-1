@@ -59,6 +59,7 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' && github.ref_name == 'main' }}
     needs: build
     runs-on: ubuntu-latest
+    permissions: {}
 
     steps:
       - name: Deploy to remote server
