@@ -32,6 +32,7 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
   && mkdir -p /opt/site-seed \
   && cp -a /var/www/html/user /opt/site-seed/user \
   && mkdir -p /data/user \
+  && mkdir -p /data/user/accounts /data/user/backup /data/user/data /data/user/pages \
   && chown -R www-data:www-data /var/www/html/user /opt/site-seed/user /data/user /var/www/html/assets /var/www/html/backup /var/www/html/cache /var/www/html/images /var/www/html/logs /var/www/html/tmp
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]

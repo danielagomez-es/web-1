@@ -49,7 +49,7 @@ button { font: inherit; }
 .hero { background: var(--cream); display: grid; grid-template-columns: .92fr 1.08fr; min-height: 880px; padding: 150px 5vw 78px; }
 .hero__copy { align-self: center; max-width: 545px; padding: 28px 0 35px; position: relative; z-index: 1; }
 .eyebrow { color: var(--terracotta-dark); font-size: 10px; font-weight: 700; letter-spacing: .19em; margin: 0 0 24px; text-transform: uppercase; }
-.hero h1, h2 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -.055em; }
+h1, h2 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -.055em; }
 .hero h1 { font-size: clamp(57px, 7vw, 108px); line-height: .93; margin: 0; max-width: 620px; }
 .hero h1 span { color: var(--terracotta); display: block; font-style: italic; padding-left: 8%; }
 .hero__intro { color: var(--muted); font-size: 16px; line-height: 1.75; margin: 42px 0 30px; max-width: 390px; }
@@ -128,6 +128,7 @@ h2 { font-size: clamp(42px, 5vw, 74px); line-height: .98; margin: 0; }
 
 .site-footer { align-items: center; background: #292622; border-top: 1px solid rgba(245,238,230,.13); color: rgba(245,238,230,.45); display: flex; font-size: 9px; justify-content: space-between; letter-spacing: .13em; padding: 22px 5vw; text-transform: uppercase; }
 .site-footer a { color: #dc917a; }
+.site-nav--mobile { display: none; }
 
 .age-gate { align-items: center; background: #292622; color: #f7eee7; display: flex; justify-content: center; min-height: 100vh; overflow: hidden; padding: 30px; position: relative; text-align: center; }
 .age-gate__glow { background: radial-gradient(circle, rgba(179,83,66,.4), transparent 67%); height: 700px; left: 50%; position: absolute; top: 50%; transform: translate(-50%, -50%); width: 700px; }
@@ -152,6 +153,7 @@ h2 { font-size: clamp(42px, 5vw, 74px); line-height: .98; margin: 0; }
 @media (max-width: 620px) {
   .site-header { padding: 20px 6vw; }
   .site-nav { display: none; }
+  .site-nav--mobile { border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 18px; padding: 18px 6vw 0; }
   .header-cta { font-size: 9px; }
   .hero { min-height: auto; padding: 115px 6vw 95px; }
   .hero h1 { font-size: clamp(53px, 15vw, 80px); }

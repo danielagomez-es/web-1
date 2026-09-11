@@ -2,6 +2,9 @@ name: Docker image
 
 on:
   push:
+    branches:
+      - main
+      - copilot/feature-migrate-to-foss-cms
   workflow_dispatch:
     inputs:
       deploy:
@@ -42,7 +45,7 @@ jobs:
             if [ "${GITHUB_REF_NAME}" = "main" ]; then
               echo "ghcr.io/${GITHUB_REPOSITORY_OWNER}/daniela-gomez:main"
               echo "ghcr.io/${GITHUB_REPOSITORY_OWNER}/daniela-gomez:latest"
-            else
+            elif [ "${GITHUB_REF_NAME}" = "copilot/feature-migrate-to-foss-cms" ]; then
               echo "ghcr.io/${GITHUB_REPOSITORY_OWNER}/daniela-gomez:test"
             fi
             echo 'EOF'

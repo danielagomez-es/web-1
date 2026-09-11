@@ -1,5 +1,5 @@
 /user/accounts/*
-!/user/accounts/daniela.yaml
+!/user/accounts/.gitkeep
 /user/backup/
 /user/cache/
 /user/data/

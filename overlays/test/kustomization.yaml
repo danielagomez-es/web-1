@@ -21,7 +21,7 @@ patches:
         value: Host(`test.danielagomez.es`)
   - target:
       kind: Deployment
-      name: web-server
+      labelSelector: app.kubernetes.io/name=web-server
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/image

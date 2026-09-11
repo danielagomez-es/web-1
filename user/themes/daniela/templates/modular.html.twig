@@ -33,6 +33,11 @@
     </header>
 
     <main>
+      <nav class="site-nav site-nav--mobile" aria-label="Navegación principal móvil">
+        {% for module in modules if module.header.show_in_nav %}
+        <a href="#{{ module.header.anchor|default(module.slug) }}">{{ module.header.nav_label|default(module.menu) }}</a>
+        {% endfor %}
+      </nav>
       {% for module in modules %}
       {{ module.content|raw }}
       {% endfor %}
