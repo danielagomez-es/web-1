@@ -6,6 +6,6 @@ resources:
 - ../route-0.yaml
 - ../persistentvolumeclaim.yaml
 generators:
-- ../ksops-generator.yaml
+- ksops-generator.yaml
 patches:
-- path: ../deployment-grav.patch.yaml
+- path: deployment-grav.patch.yaml
