@@ -21,12 +21,12 @@ done
 
 if ! find "${RUNTIME_USER_DIR}/accounts" -maxdepth 1 -name '*.yaml' | grep -q .; then
   username="${GRAV_ADMIN_USERNAME:-}"
-  ******
+  admin_password="$(printenv GRAV_ADMIN_PASSWORD 2>/dev/null || true)"
 
-  if [ -n "${username}" ] && [ -n "${password}" ]; then
+  if [ -n "${username}" ] && [ -n "${admin_password}" ]; then
     email="${GRAV_ADMIN_EMAIL:-admin@example.com}"
     fullname="${GRAV_ADMIN_FULLNAME:-Site Admin}"
-    password_hash="$(php -r 'echo password_hash($argv[1], PASSWORD_BCRYPT);' "${password}")"
+    password_hash="$(php -r 'echo password_hash($argv[1], PASSWORD_BCRYPT);' "${admin_password}")"
 
     cat > "${RUNTIME_USER_DIR}/accounts/${username}.yaml" <<ACCOUNT
 email: ${email}
