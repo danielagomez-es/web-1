@@ -1,0 +1,17 @@
+<section class="intro-section section-grid" id="{{ page.header.anchor|default('experiencia') }}">
+  <div class="section-kicker"><span>{{ page.header.section_number }}</span><span class="section-kicker__line"></span><span>{{ page.header.section_label }}</span></div>
+  <div class="intro-section__content">
+    <p class="eyebrow">{{ page.header.eyebrow }}</p>
+    <h2>{{ page.header.heading }}</h2>
+    <p>{{ page.header.body|nl2br }}</p>
+    <div class="values-list">
+      {% for value in page.header.values|default([]) %}
+      <div>
+        <span>{{ value.number }}</span>
+        <strong>{{ value.title }}</strong>
+        <p>{{ value.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,7 @@
+/user/accounts/*
+!/user/accounts/daniela.yaml
+/user/backup/
+/user/cache/
+/user/data/
+/user/images/
+/user/logs/

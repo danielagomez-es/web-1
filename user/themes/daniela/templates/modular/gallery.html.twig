@@ -1,0 +1,17 @@
+<section class="gallery-section" id="{{ page.header.anchor|default('galeria') }}">
+  <div class="gallery-heading section-grid">
+    <div class="section-kicker"><span>{{ page.header.section_number }}</span><span class="section-kicker__line"></span><span>{{ page.header.section_label }}</span></div>
+    <div><p class="eyebrow">{{ page.header.eyebrow }}</p><h2>{{ page.header.heading }}<br /><em>{{ page.header.accent_title }}</em></h2></div>
+  </div>
+  <div class="gallery-grid">
+    {% for item in page.header.items|default([]) %}
+    {% set image = page.media.images[item.image]|default(null) %}
+    <figure class="{{ item.layout|default('gallery-card gallery-tall') }}">
+      {% if image %}
+      <img src="{{ image.url }}" alt="{{ item.alt|e('html_attr') }}" {% if not loop.first %}loading="lazy"{% endif %} />
+      {% endif %}
+      <figcaption>{{ item.caption }}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</section>

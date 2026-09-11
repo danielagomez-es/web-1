@@ -1,0 +1,12 @@
+home:
+  alias: /home
+pages:
+  theme: daniela
+  process:
+    markdown: true
+    twig: false
+twig:
+  cache: false
+assets:
+  css_pipeline: false
+  js_pipeline: false

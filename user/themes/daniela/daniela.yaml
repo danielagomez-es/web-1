@@ -1,0 +1,10 @@
+name: Daniela
+slug: daniela
+type: theme
+version: 1.0.0
+description: Flat-file Grav theme for danielagomez.es
+icon: image
+author:
+  name: GitHub Copilot
+dependencies:
+  - { name: grav, version: '>=1.7.0' }

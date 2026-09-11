@@ -1,0 +1,19 @@
+title: Quote block
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            content:
+              unset@: true
+            header.quote:
+              type: textarea
+              label: Quote
+            header.author:
+              type: text
+              label: Author

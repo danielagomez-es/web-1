@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="{{ grav.language.getActive|default('es') }}">
+  <head>
+    {% set meta_title = page.header.meta_title|default(site.title) %}
+    {% set meta_description = page.header.meta_description|default(site.metadata.description) %}
+    {% set meta_keywords = page.header.meta_keywords|default(site.metadata.keywords) %}
+    {% set og_image = page.media.images[page.header.og_image]|default(null) %}
+    {% set same_as = page.header.same_as|default([]) %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#292622" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="author" content="{{ site.author.name|default(site.title)|e('html_attr') }}" />
+    <meta name="description" content="{{ meta_description|e('html_attr') }}" />
+    <meta name="keywords" content="{{ meta_keywords|e('html_attr') }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{ site.title|e('html_attr') }}" />
+    <meta property="og:title" content="{{ meta_title|e('html_attr') }}" />
+    <meta property="og:description" content="{{ meta_description|e('html_attr') }}" />
+    {% if og_image %}
+    <meta property="og:image" content="{{ og_image.url|e('html_attr') }}" />
+    <meta name="twitter:image" content="{{ og_image.url|e('html_attr') }}" />
+    <link rel="preload" as="image" href="{{ og_image.url|e('html_attr') }}" fetchpriority="high" />
+    {% endif %}
+    <meta property="og:locale" content="es_ES" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ meta_title|e('html_attr') }}" />
+    <meta name="twitter:description" content="{{ meta_description|e('html_attr') }}" />
+    <title>{{ meta_title|e }}</title>
+    {% if page.header.canonical_url %}
+    <link rel="canonical" href="{{ page.header.canonical_url|e('html_attr') }}" />
+    {% endif %}
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="{{ url('theme://css/site.css') }}" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": {{ page.header.person_name|default(site.title)|json_encode|raw }},
+        "description": {{ page.header.person_description|default(meta_description)|json_encode|raw }},
+        "gender": {{ page.header.gender|default('female')|json_encode|raw }},
+        "nationality": {{ page.header.nationality|default('es')|json_encode|raw }},
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": {{ page.header.locality|default('Huelva')|json_encode|raw }},
+          "addressCountry": {{ page.header.country|default('ES')|json_encode|raw }}
+        },
+        "areaServed": {{ page.header.area_served|default('Huelva, España')|json_encode|raw }},
+        "telephone": {{ page.header.phone|default('')|json_encode|raw }},
+        "sameAs": [
+          {% for profile in same_as %}
+          {{ profile.url|default(profile)|json_encode|raw }}{% if not loop.last %},{% endif %}
+          {% endfor %}
+        ],
+        "url": {{ page.header.header_cta_url|default('')|json_encode|raw }}
+      }
+    </script>
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+    <script src="{{ url('theme://js/site.js') }}" defer></script>
+  </body>
+</html>

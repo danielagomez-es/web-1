@@ -1,0 +1,68 @@
+title: Hero block
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            content:
+              unset@: true
+            header.anchor:
+              type: text
+              label: Anchor ID
+            header.eyebrow:
+              type: text
+              label: Eyebrow
+            header.heading:
+              type: text
+              label: Title
+            header.accent_title:
+              type: text
+              label: Accent title
+            header.intro:
+              type: textarea
+              label: Intro
+            header.whatsapp_note:
+              type: text
+              label: WhatsApp note
+            header.primary_cta_label:
+              type: text
+              label: Primary CTA label
+            header.primary_cta_url:
+              type: text
+              label: Primary CTA URL
+            header.secondary_cta_label:
+              type: text
+              label: Secondary CTA label
+            header.secondary_cta_url:
+              type: text
+              label: Secondary CTA URL
+            header.status_text:
+              type: text
+              label: Status text
+            header.image:
+              type: pagemediaselect
+              label: Hero image
+            header.image_alt:
+              type: text
+              label: Hero image alt text
+            header.figure_label:
+              type: text
+              label: Figure label
+            header.figure_caption:
+              type: text
+              label: Figure caption
+            header.stamp_title:
+              type: text
+              label: Stamp title
+            header.stamp_lines:
+              type: list
+              label: Stamp lines
+              fields:
+                .text:
+                  type: text
+                  label: Text

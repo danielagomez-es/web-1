@@ -1,0 +1,27 @@
+<section class="hero" id="{{ page.header.anchor|default('inicio') }}">
+  {% set image = page.media.images[page.header.image]|default(null) %}
+  <div class="hero__copy">
+    <p class="eyebrow">{{ page.header.eyebrow }}</p>
+    <h1>{{ page.header.heading }}<span>{{ page.header.accent_title }}</span></h1>
+    <p class="hero__intro">{{ page.header.intro|nl2br }}</p>
+    <p class="whatsapp-note">{{ page.header.whatsapp_note }}</p>
+    <div class="hero__actions">
+      <a class="button button--primary" href="{{ page.header.primary_cta_url }}" target="_blank" rel="noreferrer">
+        <span class="button__dot"></span> {{ page.header.primary_cta_label }}
+      </a>
+      <a class="text-link" href="{{ page.header.secondary_cta_url }}">{{ page.header.secondary_cta_label }} <span>↓</span></a>
+    </div>
+    <div class="hero__note"><span class="status-dot"></span> {{ page.header.status_text }}</div>
+  </div>
+
+  <div class="hero__visual">
+    <div class="hero__frame hero__frame--back"></div>
+    <figure class="hero__image-wrap">
+      {% if image %}
+      <img src="{{ image.url }}" alt="{{ page.header.image_alt|e('html_attr') }}" class="hero__image" />
+      {% endif %}
+    </figure>
+    <div class="hero__caption"><span>{{ page.header.figure_label }}</span><span class="caption-line"></span><span>{{ page.header.figure_caption }}</span></div>
+    <div class="hero__stamp">{{ page.header.stamp_title }}<br /><span>{% for line in page.header.stamp_lines|default([]) %}{{ line.text|default(line) }}{% if not loop.last %}<br />{% endif %}{% endfor %}</span></div>
+  </div>
+</section>

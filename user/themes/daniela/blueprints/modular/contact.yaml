@@ -1,0 +1,73 @@
+title: Contact block
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            content:
+              unset@: true
+            header.anchor:
+              type: text
+              label: Anchor ID
+            header.show_in_nav:
+              type: toggle
+              label: Show in navigation
+              highlight: 1
+              options:
+                1: Yes
+                0: No
+              default: 1
+            header.nav_label:
+              type: text
+              label: Navigation label
+            header.section_number:
+              type: text
+              label: Section number
+            header.section_label:
+              type: text
+              label: Section label
+            header.eyebrow:
+              type: text
+              label: Eyebrow
+            header.eyebrow_secondary:
+              type: text
+              label: Secondary eyebrow
+            header.heading:
+              type: text
+              label: Title
+            header.accent_title:
+              type: text
+              label: Accent title
+            header.body:
+              type: textarea
+              label: Body
+            header.note:
+              type: text
+              label: Note
+            header.button_label:
+              type: text
+              label: Button label
+            header.button_url:
+              type: text
+              label: Button URL
+            header.proof:
+              type: textarea
+              label: Social proof
+            header.links:
+              type: list
+              label: Social links
+              fields:
+                .label:
+                  type: text
+                  label: Label
+                .handle:
+                  type: text
+                  label: Handle
+                .url:
+                  type: text
+                  label: URL

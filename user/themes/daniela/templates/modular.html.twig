@@ -1,0 +1,47 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+  {% set modules = page.collection() %}
+  <main class="age-gate" id="age-gate">
+    <div class="age-gate__glow"></div>
+    <div class="age-gate__content">
+      <p class="eyebrow">{{ page.header.age_gate_eyebrow }}</p>
+      <div class="age-gate__mark">{{ page.header.age_gate_monogram }}</div>
+      <h1>{{ page.header.age_gate_title }}</h1>
+      <p>{{ page.header.age_gate_body }}</p>
+      <button class="button button--light" id="enter-site" type="button">
+        {{ page.header.age_gate_button }} <span>↗</span>
+      </button>
+      <small>{{ page.header.age_gate_note }}</small>
+    </div>
+  </main>
+
+  <div class="site-shell" id="site-shell" hidden>
+    <header class="site-header">
+      <a class="wordmark" href="#inicio" aria-label="{{ site.title }}, inicio">
+        <span class="wordmark__monogram">{{ page.header.wordmark_monogram }}</span>
+        <span>{{ page.header.wordmark_text }} <em>{{ page.header.wordmark_emphasis }}</em></span>
+      </a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        {% for module in modules if module.header.show_in_nav %}
+        <a href="#{{ module.header.anchor|default(module.slug) }}">{{ module.header.nav_label|default(module.menu) }}</a>
+        {% endfor %}
+      </nav>
+      <a class="header-cta" href="{{ page.header.header_cta_url }}" target="_blank" rel="noreferrer">
+        {{ page.header.header_cta_label }} <span>↗</span>
+      </a>
+    </header>
+
+    <main>
+      {% for module in modules %}
+      {{ module.content|raw }}
+      {% endfor %}
+    </main>
+
+    <footer class="site-footer">
+      <span>© <span id="current-year"></span> {{ site.title }}</span>
+      <span>{{ page.header.footer_text }}</span>
+      <a href="#inicio">Volver arriba ↑</a>
+    </footer>
+  </div>
+{% endblock %}

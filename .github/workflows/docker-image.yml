@@ -2,7 +2,6 @@ name: Docker image
 
 on:
   push:
-    branches: [main]
   workflow_dispatch:
     inputs:
       deploy:
@@ -35,13 +34,26 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set image tags
+        id: image-tags
+        run: |
+          {
+            echo 'tags<<EOF'
+            if [ "${GITHUB_REF_NAME}" = "main" ]; then
+              echo "ghcr.io/${GITHUB_REPOSITORY_OWNER}/daniela-gomez:main"
+              echo "ghcr.io/${GITHUB_REPOSITORY_OWNER}/daniela-gomez:latest"
+            else
+              echo "ghcr.io/${GITHUB_REPOSITORY_OWNER}/daniela-gomez:test"
+            fi
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v6.18.0
         with:
           context: .
           push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/daniela-gomez:latest
+          tags: ${{ steps.image-tags.outputs.tags }}
 
   deploy:
     if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' }}
@@ -58,9 +70,9 @@ jobs:
           script: |
             set -e
             docker login ghcr.io -u ${{ secrets.GHCR_DEPLOY_USER }} -p ${{ secrets.GHCR_DEPLOY_TOKEN }}
-            docker pull ghcr.io/${{ github.repository_owner }}/daniela-gomez:latest
+            docker pull ghcr.io/${{ github.repository_owner }}/daniela-gomez:main
             if docker ps -a --format '{{.Names}}' | grep -qx 'daniela-gomez'; then
               docker stop daniela-gomez || true
               docker rm daniela-gomez || true
             fi
-            docker run -d --name daniela-gomez -p 80:80 ghcr.io/${{ github.repository_owner }}/daniela-gomez:latest
+            docker run -d --name daniela-gomez -p 80:80 ghcr.io/${{ github.repository_owner }}/daniela-gomez:main

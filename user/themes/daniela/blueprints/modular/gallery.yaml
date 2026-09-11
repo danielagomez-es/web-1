@@ -1,0 +1,63 @@
+title: Gallery block
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            content:
+              unset@: true
+            header.anchor:
+              type: text
+              label: Anchor ID
+            header.show_in_nav:
+              type: toggle
+              label: Show in navigation
+              highlight: 1
+              options:
+                1: Yes
+                0: No
+              default: 1
+            header.nav_label:
+              type: text
+              label: Navigation label
+            header.section_number:
+              type: text
+              label: Section number
+            header.section_label:
+              type: text
+              label: Section label
+            header.eyebrow:
+              type: text
+              label: Eyebrow
+            header.heading:
+              type: text
+              label: Title
+            header.accent_title:
+              type: text
+              label: Accent title
+            header.items:
+              type: list
+              label: Gallery items
+              fields:
+                .image:
+                  type: pagemediaselect
+                  label: Image
+                .alt:
+                  type: text
+                  label: Alt text
+                .caption:
+                  type: text
+                  label: Caption
+                .layout:
+                  type: select
+                  label: Layout
+                  default: gallery-tall
+                  options:
+                    gallery-card gallery-tall: Tall
+                    gallery-card gallery-wide: Wide
+                    gallery-card gallery-tall gallery-featured: Featured tall

@@ -1,0 +1,95 @@
+title: Homepage
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            content:
+              unset@: true
+            header.meta_title:
+              type: text
+              label: Meta title
+            header.meta_description:
+              type: textarea
+              label: Meta description
+            header.meta_keywords:
+              type: text
+              label: Meta keywords
+            header.canonical_url:
+              type: text
+              label: Canonical URL
+            header.og_image:
+              type: pagemediaselect
+              label: Open Graph image
+            header.person_name:
+              type: text
+              label: Person name
+            header.person_description:
+              type: textarea
+              label: Structured description
+            header.gender:
+              type: text
+              label: Gender
+            header.nationality:
+              type: text
+              label: Nationality
+            header.locality:
+              type: text
+              label: Locality
+            header.country:
+              type: text
+              label: Country
+            header.area_served:
+              type: text
+              label: Area served
+            header.phone:
+              type: text
+              label: Phone
+            header.same_as:
+              type: list
+              label: Social profile URLs
+              fields:
+                .url:
+                  type: text
+                  label: URL
+            header.age_gate_eyebrow:
+              type: text
+              label: Age gate eyebrow
+            header.age_gate_monogram:
+              type: text
+              label: Age gate monogram
+            header.age_gate_title:
+              type: text
+              label: Age gate title
+            header.age_gate_body:
+              type: textarea
+              label: Age gate body
+            header.age_gate_button:
+              type: text
+              label: Age gate button
+            header.age_gate_note:
+              type: text
+              label: Age gate note
+            header.wordmark_monogram:
+              type: text
+              label: Wordmark monogram
+            header.wordmark_text:
+              type: text
+              label: Wordmark text
+            header.wordmark_emphasis:
+              type: text
+              label: Wordmark emphasis
+            header.header_cta_label:
+              type: text
+              label: Header CTA label
+            header.header_cta_url:
+              type: text
+              label: Header CTA URL
+            header.footer_text:
+              type: text
+              label: Footer text

@@ -1,0 +1,55 @@
+title: Experience block
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            content:
+              unset@: true
+            header.anchor:
+              type: text
+              label: Anchor ID
+            header.show_in_nav:
+              type: toggle
+              label: Show in navigation
+              highlight: 1
+              options:
+                1: Yes
+                0: No
+              default: 1
+            header.nav_label:
+              type: text
+              label: Navigation label
+            header.section_number:
+              type: text
+              label: Section number
+            header.section_label:
+              type: text
+              label: Section label
+            header.eyebrow:
+              type: text
+              label: Eyebrow
+            header.heading:
+              type: text
+              label: Title
+            header.body:
+              type: textarea
+              label: Body
+            header.values:
+              type: list
+              label: Values
+              fields:
+                .number:
+                  type: text
+                  label: Number
+                .title:
+                  type: text
+                  label: Title
+                .description:
+                  type: textarea
+                  label: Description

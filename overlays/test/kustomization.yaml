@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../
+namespace: danielagomez-es-test
+nameSuffix: -test
+patches:
+  - target:
+      kind: Namespace
+      name: danielagomez-es
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: danielagomez-es-test
+  - target:
+      kind: IngressRoute
+      name: web-server-daniela
+    patch: |-
+      - op: replace
+        path: /spec/routes/0/match
+        value: Host(`test.danielagomez.es`)
+  - target:
+      kind: Deployment
+      name: web-server
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: ghcr.io/danielagomez-es/daniela-gomez:test
