@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: web-server-env
+    namespace: danielagomez-es
+type: Opaque
+stringData:
+    PATH: ENC[AES256_GCM,data:+zcsEGlP2YUrVeOxwm2+8gImhUSJoh6U4uiSASv9J7HCqudyx1UC04R1bfgeCjSMfWx1GBNie0wp5JhR,iv:ekgEFBI+E2AEP2LEBg27GAQ8KJvC9DXyk9cK1Z1wBq8=,tag:bDDwlZp3cIqAwo+UfN/1/A==,type:str]
+    NGINX_VERSION: ENC[AES256_GCM,data:0QV/Z8re,iv:7F6ZOwzzKy8hmlwfZZpS+/cvIokalL79FlO/dDDqg2s=,tag:LO8wbDJs4NGlzvpZDX42nw==,type:str]
+    PKG_RELEASE: ENC[AES256_GCM,data:3w==,iv:la2a7cHORF+OwmwNtnxXbFd89SUtMeOI5MKaLbTM6GE=,tag:WimeQwHgsf2pM6JwZqJUCg==,type:str]
+    DYNPKG_RELEASE: ENC[AES256_GCM,data:Vw==,iv:1Kb/icrlF2Ek6WSsYTAb7y7BO/E8JQ0Qew1xN5vGMF8=,tag:36JZtSNnruXGkH/+u/VZbA==,type:str]
+    NJS_VERSION: ENC[AES256_GCM,data:e4GRJjQD,iv:x/nBUKFisvx0GBgSk147nqZOklYcQD+0Pk/vXJgRMBw=,tag:VZRMXV/GWns7ybfbSpiREg==,type:str]
+    NJS_RELEASE: ENC[AES256_GCM,data:nw==,iv:Jx+73/cJqSLKs59Xx3FuLWofiaARLgCu3n+K3QaGpHY=,tag:IE2MWgb/A1s+IGh2/TcYWg==,type:str]
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArZkN6REkxVEV5SE5jYUhH
+            UkhPVTlwQXFWejZvQlRpc1J4V2hINjdxZlFzCnRxS2R3ZFNYbFRuZHkzSkZxWXJF
+            UHNLTmlVTXBVeHY2am9JMVlwcUc5RmcKLS0tIHZDbFQ3MnRXYTlnVFZNcHFlMVFp
+            WitiRGR5NzhEWmdQOGpIR25oKy8xY0EK4yKV4+HXMIE2xgyb7f7HpSBfU5wSK2/+
+            QLT5ppHGSR0b2FUXAnhS5TUrIkHNHabgZ+DOi1J9Be5R0tNfUUKUfg==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1cvpkdlz2uysxef3vf4q4zca9trcjdcy3u2dfmy4wfaeqssnsxalqp5u9h2
+    encrypted_regex: ^(data|stringData|command|args|exec)$
+    lastmodified: "2026-09-10T09:33:15Z"
+    mac: ENC[AES256_GCM,data:c0wOqyxBQON6Rgq8h7JU+CBTQkpCVc52d+vxTMo4v7Ysgq3CEp6G3M7/IzqBl8julEMzy2+f1S1GX85Pull4QrPDb3Xgjdzg08DjLpFGGrI+Wgpzx4VT3Ffi+r9VMxnFY5izpBZoAhnLqpDdNbLDCdA8YVVirfxwcdWXnjPX+fk=,iv:3vLWlF4WjxrKG7Ed1gL54nJUYcUN27usT++UskI0Uq4=,tag:yrf1lutxFSNYSC0Y08iQcw==,type:str]
+    version: 3.13.3

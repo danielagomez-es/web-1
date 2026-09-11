@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: web-server
+    namespace: danielagomez-es
+spec:
+    replicas: 1
+    strategy:
+        type: Recreate
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: web-server
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/name: web-server
+        spec:
+            nodeSelector:
+                kubernetes.io/hostname: spainip-k3s
+            automountServiceAccountToken: false
+            terminationGracePeriodSeconds: 120
+            containers:
+                - name: web-server
+                  image: ghcr.io/danielagomez-es/daniela-gomez@sha256:c023d811d1baecaf6e946f828bca77b8de03f6c6d99043d7c29d88c3b6b892de
+                  imagePullPolicy: IfNotPresent
+                  envFrom:
+                    - secretRef:
+                        name: web-server-env
+                  resources:
+                    requests:
+                        cpu: 25m
+                        memory: 64Mi
+                  command:
+                    - ENC[AES256_GCM,data:mc6oOp02Uw+TJCP10ve75zsSK0kq,iv:uaQTWUzRtoJuaw+tCC/uMoPkiG9V+PoYIQ8fbc8e1Vs=,tag:ueWcZEbOcyPH5H0Z2flcwg==,type:str]
+                  args:
+                    - ENC[AES256_GCM,data:GJ8vjdg=,iv:m12UXElH2kUAK3nLxZfrFZKRYtAGKVqPjZ9NwugPBHA=,tag:GxSbpLdjZBT4SPy9DwjrsQ==,type:str]
+                    - ENC[AES256_GCM,data:xAc=,iv:qMK45o95XEH8yUW7ooOcWPq09+HBDGR/m9gPyo0TdmQ=,tag:GqxiX7j9yodiASSHPxBiSQ==,type:str]
+                    - ENC[AES256_GCM,data:F9/bOfg0dnaN190=,iv:HrcvJZinHSrXdKsCLO3wnWjiEw1w4XFoiYAjd7+k2SI=,tag:FFZ4GGjYNX8TQt1H00i1Cg==,type:str]
+                  workingDir: /
+                  ports:
+                    - name: p80-tcp
+                      containerPort: 80
+                      protocol: TCP
+                  volumeMounts:
+                    - name: shm
+                      mountPath: /dev/shm
+                  readinessProbe:
+                    exec:
+                        command:
+                            - ENC[AES256_GCM,data:mPkw7cuxiA==,iv:Kd1G2C2yYW6uAGT6uU48LTVhLtw/YKefZiz/s6HlSeY=,tag:oEMdn/5U+xomU/97LIXTyg==,type:str]
+                            - ENC[AES256_GCM,data:O5Y=,iv:YDFQJR4U5B1DCi5YsJ0oAisAJx67FVEV1fR13xj+n/4=,tag:+myjT+UG4RIij+BDzL3jQw==,type:str]
+                            - ENC[AES256_GCM,data:ycjDLfr6NxMWD3Jq7vHROatefyPSlaAf751k+2llbD1YLuFGipZTPIIx+zWVXE7cTw8IlE+jMLlnvVX5Dgfwzw==,iv:zQjv0a8fX8NmhI3FQzLFxXCGFsucVzUN8oEzx6diGQw=,tag:uUWP3Aps0H/ryZP66FqFlw==,type:str]
+                    periodSeconds: 10
+                    timeoutSeconds: 3
+                    failureThreshold: 3
+                  startupProbe:
+                    exec:
+                        command:
+                            - ENC[AES256_GCM,data:WzYodTHGhw==,iv:oLLNYFQD/vxw6g1+H/QzELeTljfbCOidmlGz306Oeq0=,tag:VAItdDbGpPxNBOuz1Br5Qg==,type:str]
+                            - ENC[AES256_GCM,data:zgE=,iv:BxpgR9feAJDy/w/rkg3+EDOhoA0FnfaOygJ5GnGmsek=,tag:b/SvQu8xwGmYQKEptWi8wQ==,type:str]
+                            - ENC[AES256_GCM,data:Jk7Q5HXDU/jJO0pyVQjZVmKDq+Xko3ZVXD5wT9Z4WtkFadf0jFCoiohnjdPKTjLiHQu9juHWqJX0TM56zfPTPQ==,iv:Os/sY+EB4KwLW5qF5erHDg+0GNlnUwkCIIPMiGW4f3U=,tag:wIs3YaGVYq6gFl8AwQ8kMQ==,type:str]
+                    periodSeconds: 10
+                    timeoutSeconds: 3
+                    failureThreshold: 180
+            volumes:
+                - name: shm
+                  emptyDir:
+                    medium: Memory
+                    sizeLimit: "67108864"
+            imagePullSecrets:
+                - name: registry-credentials
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA0OER0YTA2UUp2TDFiYy85
+            SGhNc3RzR0xYQ0prNzhSQjZlakVXYjhEOHpFCmYra2FsNFo1ZWxSNDlOQXBwUU5W
+            ZXpqUWpSVWRuQlRhVDRtRGJscGxkejQKLS0tIC8wUy9WOEF0MmJOdDlLaElxMExX
+            RkRYMFJFdXg3SkgzaWtCM3RMTlhMc3cK5wWca6vnXX13ksQTyyHwcjFH8CUFfPZr
+            Yn168T1PKxFKNj5k6SbNP5+RDuSZn4x1golZSwEWOZx4JwfUnHHCgA==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1cvpkdlz2uysxef3vf4q4zca9trcjdcy3u2dfmy4wfaeqssnsxalqp5u9h2
+    encrypted_regex: ^(data|stringData|command|args|exec)$
+    lastmodified: "2026-09-10T09:33:21Z"
+    mac: ENC[AES256_GCM,data:k1jRgmT/8ajQQBCRSCY2gz/vds7rAfjL5Dg1b7ZKjEozVlvBUZqYY3+1heP4U9l12KxgaEobM0ZdY+muZkLY69OiQ2KmG1t8dKE+4ZxCURehQoaHnUVfwfi0k8IP4oekPFvOcueyDM+UzvbT7vpSyYpQ7AwQJtiGA+ff9Clu4T0=,iv:YgzPKWmNRuYen9NxCrHWlETMwmYWaIA1NRwvhKkT+cs=,tag:JN7GssZhzShq8T+cx5N8ew==,type:str]
+    version: 3.13.3
