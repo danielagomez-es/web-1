@@ -56,7 +56,7 @@ jobs:
           tags: ${{ steps.image-tags.outputs.tags }}
 
   deploy:
-    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' && github.ref_name == 'main' }}
     needs: build
     runs-on: ubuntu-latest
 
