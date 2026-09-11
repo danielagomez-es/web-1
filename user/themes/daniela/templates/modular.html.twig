@@ -34,7 +34,7 @@
 
     <main>
       {% for module in modules %}
-      {{ module.content|raw }}
+      {% include 'modular/' ~ module.template() ~ '.html.twig' with { page: module } %}
       {% endfor %}
     </main>
 
