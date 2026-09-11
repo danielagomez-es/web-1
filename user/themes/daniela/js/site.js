@@ -16,19 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
   enterSite.addEventListener("click", () => {
     ageGate.hidden = true;
     siteShell.hidden = false;
+    const focusTarget =
+      contentSection instanceof HTMLElement ? contentSection : siteShell;
 
-    const firstInteractiveElement = siteShell.querySelector(
-      "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])"
-    );
-
-    if (firstInteractiveElement instanceof HTMLElement) {
-      firstInteractiveElement.focus();
-    } else if (siteShell instanceof HTMLElement) {
-      siteShell.focus();
-    }
+    focusTarget.focus();
 
     requestAnimationFrame(() => {
-      if (contentSection) {
+      if (focusTarget === contentSection && contentSection) {
         contentSection.scrollIntoView({ behavior: "smooth", block: "start" });
       } else {
         window.scrollTo({ top: 0, behavior: "auto" });

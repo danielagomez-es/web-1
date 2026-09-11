@@ -52,7 +52,7 @@
           {{ profile.url|default(profile)|json_encode|raw }}{% if not loop.last %},{% endif %}
           {% endfor %}
         ],
-        "url": {{ page.header.header_cta_url|default('')|json_encode|raw }}
+        "url": {{ page.header.canonical_url|default('/')|json_encode|raw }}
       }
     </script>
   </head>
