@@ -4,4 +4,3 @@ resources:
 - ../namespace.yaml
 - ../service.yaml
 - ../route-0.yaml
-- ../persistentvolumeclaim.yaml
