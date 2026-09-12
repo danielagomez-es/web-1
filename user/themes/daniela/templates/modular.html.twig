@@ -27,14 +27,15 @@
         <a href="#{{ module.header.anchor|default(module.slug) }}">{{ module.header.nav_label|default(module.menu) }}</a>
         {% endfor %}
       </nav>
-      <a class="header-cta" href="{{ page.header.header_cta_url }}" target="_blank" rel="noreferrer">
+      <a class="header-cta" href="{{ page.header.header_cta_url }}">
         {{ page.header.header_cta_label }} <span>↗</span>
       </a>
     </header>
 
     <main>
       {% for module in modules %}
-      {% include 'modular/' ~ module.template() ~ '.html.twig' with { page: module } %}
+      {% set module_template = module.template()|replace({'modular/': ''}) %}
+      {% include 'modular/' ~ module_template ~ '.html.twig' with { page: module } %}
       {% endfor %}
     </main>
 
