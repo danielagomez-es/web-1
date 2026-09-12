@@ -34,8 +34,7 @@
 
     <main>
       {% for module in modules %}
-      {% set module_template = module.template()|replace({'modular/': ''}) %}
-      {% include 'modular/' ~ module_template ~ '.html.twig' with { page: module } %}
+      {% include module.template()|replace({'modular/': ''}) ~ '.html.twig' with { page: module } %}
       {% endfor %}
     </main>
 
