@@ -4,6 +4,11 @@ resources:
   - ../../base
 generators:
   - ksops-generator.yaml
+images:
+  - name: ghcr.io/danielagomez-es/daniela-gomez
+    newTag: test
+namespace: danielagomez-es-test
+nameSuffix: -test
 patches:
   - path: ../../base/deployment-grav.patch.yaml
   - target:
@@ -15,11 +20,6 @@ patches:
       kind: PersistentVolumeClaim
       metadata:
         name: web-server-user-data
-images:
-  - name: ghcr.io/danielagomez-es/daniela-gomez
-    newTag: test
-namespace: danielagomez-es-test
-nameSuffix: -test
   - target:
       kind: Namespace
       name: danielagomez-es
