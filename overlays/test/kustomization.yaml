@@ -14,11 +14,13 @@ patches:
         value: danielagomez-es-test
   - target:
       kind: IngressRoute
-      name: web-server-daniela
     patch: |-
       - op: replace
         path: /spec/routes/0/match
         value: Host(`test.danielagomez.es`)
+      - op: replace
+        path: /spec/routes/0/services/0/name
+        value: web-server-test
   - target:
       kind: Deployment
       labelSelector: app.kubernetes.io/name=web-server
