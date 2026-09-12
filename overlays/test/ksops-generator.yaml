@@ -7,6 +7,5 @@ metadata:
       exec:
         path: ksops
 files:
-- ../../deployment.sops.yaml
 - ../../environment.sops.yaml
 - ../../registry.sops.yaml

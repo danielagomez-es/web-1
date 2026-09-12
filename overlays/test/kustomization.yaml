@@ -10,7 +10,6 @@ images:
 namespace: danielagomez-es-test
 nameSuffix: -test
 patches:
-  - path: ../../base/deployment-grav.patch.yaml
   - target:
       kind: PersistentVolumeClaim
       name: web-server-user-data
@@ -38,7 +37,7 @@ patches:
         value: web-server-test
   - target:
       kind: Deployment
-      labelSelector: app.kubernetes.io/name=web-server
+      name: web-server
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/image
