@@ -6,6 +6,18 @@ generators:
   - ksops-generator.yaml
 patches:
   - path: ../../base/deployment-grav.patch.yaml
+  - target:
+      kind: PersistentVolumeClaim
+      name: web-server-user-data
+    patch: |-
+      $patch: delete
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: web-server-user-data
+images:
+  - name: ghcr.io/danielagomez-es/daniela-gomez
+    newTag: test
 namespace: danielagomez-es-test
 nameSuffix: -test
 patches:
