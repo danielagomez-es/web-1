@@ -33,7 +33,7 @@ patches:
     patch: |-
       - op: replace
         path: /spec/routes/0/match
-        value: Host(`test.danielagomez.es`)
+        value: Host(`danielagomez-test.spainip.es`)
       - op: replace
         path: /spec/routes/0/services/0/name
         value: web-server-test
