@@ -4,6 +4,8 @@ resources:
   - ../../base
 generators:
   - ksops-generator.yaml
+patches:
+  - path: ../../base/deployment-grav.patch.yaml
 namespace: danielagomez-es-test
 nameSuffix: -test
 patches:

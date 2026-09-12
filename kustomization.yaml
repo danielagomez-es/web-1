@@ -4,3 +4,5 @@ resources:
 - base
 generators:
 - ksops-generator.yaml
+patches:
+- path: base/deployment-grav.patch.yaml

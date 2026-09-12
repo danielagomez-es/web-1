@@ -5,5 +5,3 @@ resources:
 - ../service.yaml
 - ../route-0.yaml
 - ../persistentvolumeclaim.yaml
-patches:
-- path: deployment-grav.patch.yaml
