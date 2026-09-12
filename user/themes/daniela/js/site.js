@@ -20,13 +20,5 @@ document.addEventListener("DOMContentLoaded", () => {
       contentSection instanceof HTMLElement ? contentSection : siteShell;
 
     focusTarget.focus();
-
-    requestAnimationFrame(() => {
-      if (focusTarget === contentSection && contentSection) {
-        contentSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        window.scrollTo({ top: 0, behavior: "auto" });
-      }
-    });
   });
 });

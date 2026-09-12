@@ -7,12 +7,12 @@
     <h2>{{ page.header.heading }}<br /><em>{{ page.header.accent_title }}</em></h2>
     <p>{{ page.header.body }}</p>
     <p class="whatsapp-note">{{ page.header.note }}</p>
-    <a class="button button--primary button--large" href="{{ page.header.button_url }}" target="_blank" rel="noreferrer"><span class="button__dot"></span> {{ page.header.button_label }}</a>
+    <a class="button button--primary button--large" href="{{ page.header.button_url }}"><span class="button__dot"></span> {{ page.header.button_label }}</a>
   </div>
   <p class="social-proof">{{ page.header.proof }}</p>
   <div class="social-links">
     {% for link in page.header.links|default([]) %}
-    <a href="{{ link.url }}" target="_blank" rel="noreferrer"><span>{{ link.label }}</span><strong>{{ link.handle }}</strong><span>↗</span></a>
+    <a href="{{ link.url }}"><span>{{ link.label }}</span><strong>{{ link.handle }}</strong><span>↗</span></a>
     {% endfor %}
   </div>
 </section>
