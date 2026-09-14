@@ -1,0 +1,5 @@
+defaultNamespace: danielagomez-es-test
+kustomize:
+  dir: .
+helm:
+  takeOwnership: true
