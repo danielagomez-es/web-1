@@ -46,7 +46,7 @@
                 }
               }
             ],
-            "image": "ghcr.io/danielagomez-es/daniela-gomez@sha256:c023d811d1baecaf6e946f828bca77b8de03f6c6d99043d7c29d88c3b6b892de",
+            "image": "ghcr.io/danielagomez-es/daniela-gomez@sha256:26e1e3d88dcaec0309d469074025dd56031443565ad6acc2edafceef8ce77ed3",
             "imagePullPolicy": "IfNotPresent",
             "name": "web-server",
             "ports": [
