@@ -126,8 +126,12 @@ h2 { font-size: clamp(42px, 5vw, 74px); line-height: .98; margin: 0; }
 .social-links strong { font-family: Georgia, serif; font-size: 18px; font-weight: 400; }
 .social-links a > span:last-child { color: #dc917a; font-size: 16px; }
 
-.site-footer { align-items: center; background: #292622; border-top: 1px solid rgba(245,238,230,.13); color: rgba(245,238,230,.45); display: flex; font-size: 9px; justify-content: space-between; letter-spacing: .13em; padding: 22px 5vw; text-transform: uppercase; }
-.site-footer a { color: #dc917a; }
+.site-footer { align-items: center; background: #292622; border-top: 1px solid rgba(245,238,230,.13); color: rgba(245,238,230,.45); column-gap: 24px; display: grid; font-size: 9px; grid-template-areas: "copyright age top" "notice notice notice"; grid-template-columns: 1fr auto 1fr; letter-spacing: .13em; padding: 22px 5vw; row-gap: 20px; text-transform: uppercase; }
+.site-footer > span:first-child { grid-area: copyright; }
+.site-footer > span:nth-of-type(2) { grid-area: notice; text-align: center; }
+.site-footer > span:nth-of-type(3) { grid-area: age; text-align: center; }
+.site-footer > a { color: #dc917a; grid-area: top; justify-self: end; }
+.site-footer > span:nth-of-type(2) { max-width: 60rem; justify-self: center; }
 
 .age-gate { align-items: center; background: #292622; color: #f7eee7; display: flex; justify-content: center; min-height: 100vh; overflow: hidden; padding: 30px; position: relative; text-align: center; }
 .age-gate__glow { background: radial-gradient(circle, rgba(179,83,66,.4), transparent 67%); height: 700px; left: 50%; position: absolute; top: 50%; transform: translate(-50%, -50%); width: 700px; }
@@ -177,5 +181,8 @@ h2 { font-size: clamp(42px, 5vw, 74px); line-height: .98; margin: 0; }
   .contact-section__content { margin-bottom: 62px; margin-top: 60px; }
   .social-links { grid-template-columns: 1fr; }
   .social-links a { grid-template-columns: .75fr 1.2fr 20px; }
-  .site-footer { align-items: start; flex-direction: column; gap: 13px; line-height: 1.5; padding: 22px 6vw; }
+  .site-footer { align-items: center; column-gap: 0; grid-template-areas: "copyright" "age" "notice" "top"; grid-template-columns: 1fr; line-height: 1.5; padding: 22px 6vw; row-gap: 12px; text-align: center; }
+  .site-footer > span:first-child, .site-footer > span:nth-of-type(2), .site-footer > span:nth-of-type(3) { justify-self: center; text-align: center; }
+  .site-footer > span:nth-of-type(2) { margin-top: 8px; }
+  .site-footer > a { justify-self: center; }
 }
