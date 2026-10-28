@@ -3,9 +3,6 @@
   "apiVersion": "apps/v1",
   "kind": "Deployment",
   "metadata": {
-    "annotations": {
-      "deployment.kubernetes.io/revision": "1"
-    },
     "name": "web-server",
     "namespace": "danielagomez-es"
   },
@@ -46,7 +43,7 @@
                 }
               }
             ],
-            "image": "ghcr.io/danielagomez-es/daniela-gomez@sha256:aac1abac7f57e73f26aebc830dba5c5dbe28b520f207992141d99ca6256f91aa",
+            "image": "ghcr.io/danielagomez-es/daniela-gomez@sha256:042c7ea47f316a478cdd9ec1948d3dca0a11edf7f075420e6529a2f20f6face4",
             "imagePullPolicy": "IfNotPresent",
             "name": "web-server",
             "ports": [

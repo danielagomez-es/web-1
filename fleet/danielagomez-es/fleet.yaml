@@ -3,3 +3,13 @@ kustomize:
   dir: .
 helm:
   takeOwnership: true
+
+diff:
+  comparePatches:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: web-server
+    namespace: danielagomez-es
+    operations:
+    - op: remove
+      path: /metadata/annotations/deployment.kubernetes.io~1revision

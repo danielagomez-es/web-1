@@ -3,6 +3,12 @@ name: Docker image
 on:
   push:
     branches: [main]
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - nginx.conf
+      - site/**
+      - .github/workflows/docker-image.yml
   workflow_dispatch:
     inputs:
       deploy:
@@ -18,7 +24,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     steps:
@@ -36,12 +42,42 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
+        id: build
         uses: docker/build-push-action@v6.18.0
         with:
           context: .
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/daniela-gomez:latest
+
+      - name: Update Fleet image digest
+        if: github.ref == 'refs/heads/main'
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          python3 - <<'PYTHON'
+          import os
+          import re
+          from pathlib import Path
+
+          path = Path("fleet/danielagomez-es/workloads.yaml")
+          text = path.read_text()
+          digest = os.environ["IMAGE_DIGEST"]
+          pattern = r'("image":\s*")ghcr\.io/danielagomez-es/daniela-gomez@sha256:[0-9a-f]{64}(")'
+          updated, count = re.subn(pattern, rf'\g<1>ghcr.io/danielagomez-es/daniela-gomez@{digest}\g<2>', text)
+          if count != 1:
+              raise SystemExit(f"Expected one Fleet image reference, found {count}")
+          path.write_text(updated)
+          PYTHON
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add fleet/danielagomez-es/workloads.yaml
+          if git diff --cached --quiet; then
+            echo "Fleet already pins the generated image digest"
+            exit 0
+          fi
+          git commit -m "Deploy image ${IMAGE_DIGEST} through Fleet"
+          git push origin HEAD:main
 
   deploy:
     if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' }}
